@@ -23,6 +23,7 @@ $(document).ready(function()
 
 })
 
+// Button Logic is done here
 function ConfigureButtons()
 {
     $(".topic-button").click(function () 
@@ -31,6 +32,8 @@ function ConfigureButtons()
         // to the topic being searched, which is in the button's 'value' attribute
         search = $(this).val();
         queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=" + API_Key + "&limit=10";
+
+        console.log(queryURL);
 
         $.ajax({
             URL: queryURL,
