@@ -1,5 +1,5 @@
 let topics = ["animals", "insects", "cars", "colors"];
-let API_Key = "ty0kxw0Ygk6F1hpxthRk0qLTJfikt2D7";
+let API_Key = "YQR0rXVKfpOTFjG8Ys7aiHbGlKxYVa40";
 let search;
 let queryURL;
 
@@ -21,7 +21,9 @@ $(document).ready(function()
 
    ConfigureButtons();
 
-})
+});
+
+
 
 // Button Logic is done here
 function ConfigureButtons()
@@ -36,11 +38,11 @@ function ConfigureButtons()
         console.log(queryURL);
 
         $.ajax({
-            URL: queryURL,
+            url: queryURL,
             method: "GET"
-        }).then(function (response) 
+        }).then(function(response)
         {
-            console.log(response);            
+            console.log(response.data.length);        
         })
     })
 }
