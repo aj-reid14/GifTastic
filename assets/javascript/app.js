@@ -2,6 +2,8 @@ let topics = ["animals", "insects", "cars", "colors"];
 let API_Key = "YQR0rXVKfpOTFjG8Ys7aiHbGlKxYVa40";
 let search;
 let queryURL;
+let state_still = "still";
+let state_animated = "animated";
 
 $(document).ready(function()
 {
@@ -20,6 +22,7 @@ $(document).ready(function()
     }
 
    ConfigureButtons();
+   ConfigureGIFS();
 
 });
 
@@ -61,6 +64,28 @@ function ConfigureButtons()
     })
 }
 
+function ConfigureGIFS()
+{
+    $(document.body).on("click", ".gif", function()
+    {
+        let state = $(this).attr("state");
+        let stillGIF = $(this).attr("gif-still");
+        let animatedGIF = $(this).attr("gif-animated");
+
+        switch (state) {
+            case "still":
+                $(this).attr("src", animatedGIF);
+                $(this).attr("state", state_animated);
+                break;
+
+            case "animated":
+                $(this).attr("src", stillGIF);
+                $(this).attr("state", state_still);
+                break;
+        }
+    })
+}
+
 function DisplayGIFS(giphyResponse)
 {
 
@@ -69,14 +94,14 @@ function DisplayGIFS(giphyResponse)
     for (let i = 0; i < giphyResponse.data.length; i++)
     {
         let gifStill = giphyResponse.data[i].images.fixed_height_still.url;
-        let gifAnimated = giphyResponse.data[i].images.fixed_height.mp4;
+        let gifAnimated = giphyResponse.data[i].images.fixed_height.url;
 
         let newGIf = $("<img>");
         newGIf.addClass("gif");
         newGIf.attr("src", gifStill);
         newGIf.attr("gif-still", gifStill);
         newGIf.attr("gif-animated", gifAnimated);
-        newGIf.attr("state", "still");
+        newGIf.attr("state", state_still);
 
         $("#gif-area").append(newGIf);
     }
