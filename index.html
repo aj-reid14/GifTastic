@@ -6,30 +6,35 @@
     <title>GifTastic</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <h1>G I F T A S T I C</h1>
 
-    <div id="content" class="row">
-    
-        <div id="button-area" class="col-md-8"></div>
-    
-        <div id="input-area" class="col-md-8">
-    
-            <input id="input-box" type="text" placeholder="Create a Button!">
-            <button id="input-button" type="submit">Add</button>
-    
+    <h1 id="title">G I F T A S T I C</h1>
+
+    <div id="content" class="container">
+
+        <div class="row">
+            <section id="button-area" class="col-md-12"></section>
+
+            <section id="input-area">
+                <input id="input-box" type="text" placeholder="Create a Button!">
+                <button id="input-button" type="submit">Add</button>
+            </section>
         </div>
 
+
         <div id="gif-area" class="col-md-8"></div>
-    
+
     </div>
 
     <script src="assets/javascript/app.js"></script>
