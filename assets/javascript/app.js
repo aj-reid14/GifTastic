@@ -88,21 +88,27 @@ function ConfigureGIFS()
 
 function DisplayGIFS(giphyResponse)
 {
-
     $("#gif-area").html("");
 
-    for (let i = 0; i < giphyResponse.data.length; i++)
+    if (giphyResponse.data.length === 0) 
     {
-        let gifStill = giphyResponse.data[i].images.fixed_height_still.url;
-        let gifAnimated = giphyResponse.data[i].images.fixed_height.url;
+        let emptyMSG = $("<h1>").text("No GIFs found!");
+        $("#gif-area").append(emptyMSG);
+    }
+    else 
+    {
+        for (let i = 0; i < giphyResponse.data.length; i++) {
+            let gifStill = giphyResponse.data[i].images.fixed_height_still.url;
+            let gifAnimated = giphyResponse.data[i].images.fixed_height.url;
 
-        let newGIf = $("<img>");
-        newGIf.addClass("gif");
-        newGIf.attr("src", gifStill);
-        newGIf.attr("gif-still", gifStill);
-        newGIf.attr("gif-animated", gifAnimated);
-        newGIf.attr("state", state_still);
+            let newGIf = $("<img>");
+            newGIf.addClass("gif");
+            newGIf.attr("src", gifStill);
+            newGIf.attr("gif-still", gifStill);
+            newGIf.attr("gif-animated", gifAnimated);
+            newGIf.attr("state", state_still);
 
-        $("#gif-area").append(newGIf);
+            $("#gif-area").append(newGIf);
+        }
     }
 }
