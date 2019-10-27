@@ -44,7 +44,7 @@ function ConfigureButtons()
 
         // Create & Send the API Request, & Display GIFs
         $.ajax({
-            url: queryURL,
+            url: queryURL, // 'url'. Not 'URL'. Definitely not 'URL'.
             method: "GET"
         }).then(function(response)
         {
