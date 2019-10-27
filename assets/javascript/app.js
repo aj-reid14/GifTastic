@@ -42,7 +42,27 @@ function ConfigureButtons()
             method: "GET"
         }).then(function(response)
         {
-            console.log(response.data.length);        
+            DisplayGIFS(response);     
         })
     })
+
+    $("#input-button").click(function()
+    {
+        let newTopicButton = $("<button>");
+        let newTopic = $("#input-box").val();
+
+        newTopicButton.addClass("topic-button");
+        newTopicButton.val(newTopic);
+        newTopicButton.text(newTopic.charAt(0).toUpperCase() + newTopic.substring(1));
+        $("#button-row").append(newTopicButton);
+
+        $("#input-box").val("");
+    })
+}
+
+function DisplayGIFS(giphyResponse)
+{
+
+    console.log(giphyResponse);
+
 }
