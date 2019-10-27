@@ -16,7 +16,7 @@ $(document).ready(function()
         newTopicButton.text(topics[i].charAt(0).toUpperCase() + topics[i].substring(1));
 
         // Add the button to appropriate div
-        $("#button-row").append(newTopicButton);
+        $("#button-area").append(newTopicButton);
     }
 
    ConfigureButtons();
@@ -28,7 +28,7 @@ $(document).ready(function()
 // Button Logic is done here
 function ConfigureButtons()
 {
-    $(".topic-button").click(function () 
+    $(document.body).on("click", ".topic-button", function () 
     {
         // 'search' will be used to send the Giphy API request, it must be set 
         // to the topic being searched, which is in the button's 'value' attribute
@@ -49,12 +49,13 @@ function ConfigureButtons()
     $("#input-button").click(function()
     {
         let newTopicButton = $("<button>");
-        let newTopic = $("#input-box").val();
+        let newTopic = ($("#input-box").val()).toLowerCase();
+        topics.push(newTopic);
 
         newTopicButton.addClass("topic-button");
         newTopicButton.val(newTopic);
         newTopicButton.text(newTopic.charAt(0).toUpperCase() + newTopic.substring(1));
-        $("#button-row").append(newTopicButton);
+        $("#button-area").append(newTopicButton);
 
         $("#input-box").val("");
     })
@@ -63,6 +64,20 @@ function ConfigureButtons()
 function DisplayGIFS(giphyResponse)
 {
 
-    console.log(giphyResponse);
+    $("#gif-area").html("");
 
+    for (let i = 0; i < giphyResponse.data.length; i++)
+    {
+        let gifStill = giphyResponse.data[i].images.fixed_height_still.url;
+        let gifAnimated = giphyResponse.data[i].images.fixed_height.mp4;
+
+        let newGIf = $("<img>");
+        newGIf.addClass("gif");
+        newGIf.attr("src", gifStill);
+        newGIf.attr("gif-still", gifStill);
+        newGIf.attr("gif-animated", gifAnimated);
+        newGIf.attr("state", "still");
+
+        $("#gif-area").append(newGIf);
+    }
 }
